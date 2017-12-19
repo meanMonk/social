@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['/admin']">Social App</a>
+    <div>
+      <span class="navbar-text">
+        <span class="btn btn-sm btn-outline-success" [routerLink]="['/register']">register</span>
+      </span>
+    </div>
+  </nav>
+  <div class="container-fluid pt-5">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="jumbotron">
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet iste labore similique sit temporibus veniam? Adipisci alias aliquam commodi ea est illum, molestiae molestias nihil officiis placeat, quae reiciendis.</p>
+          <hr class="my-4">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque deserunt nisi odio, quis reprehenderit sed. </p>
+          <p class="lead text-center">
+            <a class="btn btn-outline-primary btn-sm" href="#" role="button">Learn more</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="container">
+          <div class="card border-dark mb-3" style="max-width: 20rem;">
+            <div class="card-header">
+              <div class="card-title text-center">
+                <h3><i class="fa fa-sign-in" aria-hidden="true"></i>  Login</h3>
+              </div>
+              <div class="card-header-tabs text-center bg-dark" *ngIf="error">
+                <small class="card-title text-danger ">
+                  Error - {{errorMessage}}
+                </small>
+              </div>
+            </div>
+            <div class="card-body text-dark">
+              <form [formGroup]="loginForm" novalidate (ngSubmit)="login(loginForm.value, loginForm.valid)">
+                <fieldset>
+                  <div class="form-group">
+                    <label for="userName"><i class="fa fa-user-circle-o"></i> Email address</label>
+                    <input type="email" class="form-control" id="userName" aria-describedby="userName" placeholder="Enter email" formControlName="email">
+                    <small class="text-danger" [hidden]="loginForm.controls.email.valid || (loginForm.controls.email.pristine)">
+                      Email is not valid and ex. <i>john@doe.com</i>.
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd"> <i class="fa fa-key"></i> Password</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Password" formControlName="password">
+                    <small class="text-danger" [hidden]="loginForm.controls.password.valid || (loginForm.controls.password.pristine)">
+                      Password should has to be of min 5 character.
+                    </small>
+                  </div>
+                  <div class="pl-2 text-center">
+                    <button type="submit" class="btn btn-md btn-outline-success" [disabled]="!loginForm.valid">Log In</button>
+                    <button class="btn btn-md btn-outline-primary" [routerLink]="['/register']">Sing Up</button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
