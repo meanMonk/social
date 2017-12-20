@@ -10,6 +10,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {CookieModule} from "ngx-cookie";
 
 const FIREBASE_MODULES = [
   AngularFireModule.initializeApp(environment.config.firebase),
@@ -26,7 +27,8 @@ const FIREBASE_MODULES = [
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    FIREBASE_MODULES
+    FIREBASE_MODULES,
+    CookieModule.forRoot()
   ],
   providers: [
     AuthGuard,

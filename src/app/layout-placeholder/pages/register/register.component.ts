@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EmailValidator} from '../../shared/service/validators';
 import {RegisterService, Users} from './service/register.service';
+import {CookieService} from "ngx-cookie";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   public returnUrl: string;
 
   constructor(public _fb: FormBuilder,
-              public route: ActivatedRoute,
+              public _cookieService: CookieService,
               public registerService: RegisterService,
               public router: Router) { }
 
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
   register(userModel: any, isValid: boolean) {
     if (isValid) {
       this.error = true;
-      userModel['referedBy'] = this.getRefernce();
+      userModel['referedBy'] = this._cookieService.get('rfb');
       this.registerService.createUser(userModel)
         .subscribe((res) => {
             this.error = false;
@@ -58,18 +59,6 @@ export class RegisterComponent implements OnInit {
             }
           }
         );
-    }
-  }
-
-
-  getRefernce() {
-    const cookie = document.cookie;
-    if (cookie) {
-      const referBy = JSON.parse(cookie);
-      document.cookie = "";
-      return referBy.rfb;
-    }else {
-      return 'no referal';
     }
   }
 

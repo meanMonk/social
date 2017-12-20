@@ -3,13 +3,15 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Activa
 import { Observable } from 'rxjs/Observable';
 import {LoginService} from '../../pages/login/service/login.service';
 import 'rxjs/add/operator/map';
+import {CookieService} from "ngx-cookie";
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor( public loginService: LoginService,
                public router: Router,
-               public route: ActivatedRoute) {
+               public route: ActivatedRoute,
+               private _cookieService: CookieService) {
 
   }
 
@@ -44,7 +46,9 @@ export class AuthGuard implements CanActivate {
   setCookie(queryParams) {
     const returnNode = queryParams['returnTo'];
     const referalId = (returnNode && returnNode.indexOf('rfb') > -1) ? (returnNode && returnNode.split('?')[1].split('=')[1]) : '';
-    (!!referalId) ? (document.cookie = JSON.stringify({rfb: referalId})) : null;
+    if (!!referalId) {
+      this._cookieService.put('rfb', referalId);
+    }
   }
 
 }
