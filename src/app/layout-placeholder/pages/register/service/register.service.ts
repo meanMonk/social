@@ -2,36 +2,60 @@ import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from "angularfire2/auth";
 import {Observable} from "rxjs/Observable";
-import {AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from "angularfire2/firestore";
 
 export interface Users {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   uid: string;
-  referedBy: string;
-  createdAt: Date;
+  referedBy?: string;
+  createdAt?: Date;
 }
 
 @Injectable()
 export class RegisterService {
 
-  private usersCollection: AngularFirestoreCollection<Users>;
-
   constructor(public  afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               public router: Router) {
 
-    this.usersCollection = afs.collection<Users>('registerUsers');
-
   }
 
   createUser(userModel) {
-    return Observable.fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(userModel.email, userModel.password));
+    return Observable.fromPromise(this.registerUser(userModel));
   }
 
-  saveUserInfo(userInfo: Users) {
-    return Observable.fromPromise(this.usersCollection.add(userInfo));
+  private registerUser(userData) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password)
+      .then((userCredential) => {
+              userData.uid = userCredential.uid;
+              userData.email = userCredential.email;
+              userData.createdAt = userCredential.metadata.creationTime;
+        return this.updateUserData(userData);
+      });
+  }
+
+  updateUserData(userData: Users) {
+
+    const userRef: AngularFirestoreDocument<Users> = this.afs.doc(`registeredUsers/${userData.uid}`);
+
+    const data: Users = {
+      email: userData.email,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      uid: userData.uid,
+      referedBy: userData.referedBy,
+      createdAt: userData.createdAt
+    };
+
+    return userRef.set(data);
+
   }
 
 }
+
+
+
+
+

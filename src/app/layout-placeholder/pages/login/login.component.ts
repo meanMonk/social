@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
   login(userModel: any, isValid: boolean) {
     if (isValid) {
       this.loginService.authenticate(userModel)
-        .subscribe(() => {
+        .subscribe((res) => {
+            console.log(res);
             this.error = false;
             this.router.navigateByUrl(this.returnUrl);
           },

@@ -12,7 +12,7 @@ import {RegisterService, Users} from './service/register.service';
 export class RegisterComponent implements OnInit {
 
   public errorMessage: string = 'User is does not exists!';
-  public error: Boolean = false;
+  public error: Boolean;
   public signUpForm: FormGroup;
   public returnUrl: string;
 
@@ -38,25 +38,15 @@ export class RegisterComponent implements OnInit {
   register(userModel: any, isValid: boolean) {
     if (isValid) {
       this.error = true;
+      userModel['referedBy'] = this.getRefernce();
       this.registerService.createUser(userModel)
         .subscribe((res) => {
             this.error = false;
-            const userInfo: any = {};
-            userInfo['firstName'] = userModel.firstName;
-            userInfo['lastName'] = userModel.lastName;
-            userInfo['email'] = res.email;
-            userInfo['createdAt'] = res.metadata.creationTime;
-            userInfo['uid'] = res.uid;
-            userInfo['referedBy'] = this.getRefernce();
-            this.registerService.saveUserInfo(userInfo)
-              .subscribe(res => {
-                  console.log(res);
-                  this.router.navigate(['/login']);
-              });
+            this.router.navigate(['/login']);
           },
           (err) => {
             const errCode = err.code;
-            this.error = true;
+            console.log(err);
             if (errCode === 'auth/wrong-password') {
               this.errorMessage = 'Password is incorrect';
             } else if (errCode === 'auth/invalid-email') {
@@ -74,11 +64,13 @@ export class RegisterComponent implements OnInit {
 
   getRefernce() {
     const cookie = document.cookie;
-    const referBy = JSON.parse(cookie);
-    console.log('refer by', referBy.frb);
-    document.cookie = "";
-
-    return referBy.rfb;
+    if (cookie) {
+      const referBy = JSON.parse(cookie);
+      document.cookie = "";
+      return referBy.rfb;
+    }else {
+      return 'no referal';
+    }
   }
 
 }
