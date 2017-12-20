@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.refreshForm();
-    document.cookie = JSON.stringify({rfb:'sahilasdf'});
   }
 
   refreshForm() {
@@ -77,6 +76,8 @@ export class RegisterComponent implements OnInit {
     const cookie = document.cookie;
     const referBy = JSON.parse(cookie);
     console.log('refer by', referBy.frb);
+    document.cookie = "";
+
     return referBy.rfb;
   }
 

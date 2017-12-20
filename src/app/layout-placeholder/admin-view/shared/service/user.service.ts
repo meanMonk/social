@@ -7,20 +7,16 @@ import {Users} from '../../../pages/register/service/register.service';
 export class UserService {
 
   currentUserId: string;
-  userInfo: Users;
+  userInfo: Users[];
   constructor(public afAuth: AngularFireAuth,
               public afs: AngularFirestore) { }
 
-  getUserData() {
-    this.afAuth.authState.subscribe(user => {
-        this.currentUserId = user.uid;
-        console.log(user.uid);
-        this.currentUserId && this.afs.doc('registerUsers/' + this.currentUserId).valueChanges()
-          .subscribe((res: Users) => {
-            this.userInfo = res;
-            console.log(res);
-          });
-    });
+  getUserData(userId) {
+       return this.afs.collection('registerUsers' , (ref) => ref.where('uid', '==', userId)).valueChanges()
+  }
+
+  getCurrentUserId() {
+    return this.afAuth.authState;
   }
 
 }

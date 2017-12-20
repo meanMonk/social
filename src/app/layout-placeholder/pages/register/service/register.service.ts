@@ -31,9 +31,7 @@ export class RegisterService {
   }
 
   saveUserInfo(userInfo: Users) {
-    console.log(userInfo);
-   return Observable.fromPromise(this.usersCollection.add(userInfo));
-
+    return Observable.fromPromise(this.usersCollection.add(userInfo));
   }
 
 }

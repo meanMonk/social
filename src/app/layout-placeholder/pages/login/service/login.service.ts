@@ -20,13 +20,6 @@ export class LoginService {
 
   }
 
-  getUserInfo() {
-    if (this.user) {
-      return this.user.email;
-    }
-    return '';
-  }
-
   isAuthenticated(): Observable<any> {
     return this.afAuth.authState;
   }

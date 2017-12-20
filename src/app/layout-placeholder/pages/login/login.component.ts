@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   getReturnUrl() {
     this.loginService.logOutUser();
-    this.returnUrl = this.route.snapshot.queryParams['returnTo'] || '/admin';
+    this.returnUrl = this.route.snapshot.queryParams['returnTo'] || '/dashboard';
   }
 
   refreshForm() {

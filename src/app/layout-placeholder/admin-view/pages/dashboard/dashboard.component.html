@@ -15,13 +15,13 @@
             <h4 class="card-title">User Information</h4>
           </div>
           <div class="card-content">
-             <div class="container">
+             <div class="container" *ngIf="userInfo">
                <div class="row">
                  <div class="col-md-3">
-                   <p>Name :</p>
+                   <p>Name : </p>
                  </div>
                  <div class="col-md-9">
-                   <p><strong>sahil kashetwar</strong></p>
+                   <p><strong>{{userInfo?.firstName}} {{userInfo?.lastName}}</strong></p>
                  </div>
                </div>
                <div class="row">
@@ -29,7 +29,7 @@
                    <p>Email :</p>
                  </div>
                  <div class="col-md-9">
-                   <strong>sahil.241093@gmail.com</strong>
+                   <strong>{{userInfo?.email}}</strong>
                  </div>
                </div>
                <div class="row">
@@ -37,7 +37,7 @@
                    <p>Referral Link :</p>
                  </div>
                  <div class="col-md-9">
-                   <p><code>http://localhost:4200/refer?rfl=1234123123</code></p>
+                   <p><code>http://localhost:4200/?rfb={{userInfo?.uid}}</code></p>
                  </div>
                </div>
              </div>
@@ -56,7 +56,7 @@
                   <p>User Name :</p>
                 </div>
                 <div class="col-md-6">
-                  sahil kashetwar
+                  {{referalName}}
                 </div>
               </div>
             </div>
