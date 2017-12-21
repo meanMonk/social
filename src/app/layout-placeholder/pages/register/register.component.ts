@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
   register(userModel: any, isValid: boolean) {
     if (isValid) {
       this.error = true;
-      userModel['referedBy'] = this._cookieService.get('rfb');
+      userModel['referedBy'] = this._cookieService.get('rfb') || '';
       this.registerService.createUser(userModel)
         .subscribe((res) => {
             this.error = false;
