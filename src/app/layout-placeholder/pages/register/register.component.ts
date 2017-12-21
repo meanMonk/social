@@ -12,7 +12,7 @@ import {CookieService} from "ngx-cookie";
 })
 export class RegisterComponent implements OnInit {
 
-  public errorMessage: string = 'User is does not exists!';
+  public errorMessage: string;
   public error: Boolean;
   public signUpForm: FormGroup;
   public returnUrl: string;
@@ -38,7 +38,6 @@ export class RegisterComponent implements OnInit {
 
   register(userModel: any, isValid: boolean) {
     if (isValid) {
-      this.error = true;
       userModel['referedBy'] = this._cookieService.get('rfb') || '';
       this.registerService.createUser(userModel)
         .subscribe((res) => {
@@ -46,17 +45,9 @@ export class RegisterComponent implements OnInit {
             this.router.navigate(['/login']);
           },
           (err) => {
-            const errCode = err.code;
+            this.error = false;
             console.log(err);
-            if (errCode === 'auth/wrong-password') {
-              this.errorMessage = 'Password is incorrect';
-            } else if (errCode === 'auth/invalid-email') {
-              this.errorMessage = 'Email is incorrect';
-            } else if (errCode === 400) {
-              this.errorMessage = 'Email is not found';
-            } else {
-              this.errorMessage = 'Email and Password is incorrect!';
-            }
+            this.errorMessage = 'Email is already used!';
           }
         );
     }

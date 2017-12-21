@@ -15,7 +15,7 @@
             <h4 class="card-title">User Information</h4>
           </div>
           <div class="card-content">
-             <div class="container" *ngIf="userInfo">
+             <div class="container" *ngIf="userInfo; else loadinInfo">
                <div class="row">
                  <div class="col-md-3">
                    <p>Name : </p>
@@ -41,6 +41,13 @@
                  </div>
                </div>
              </div>
+            <ng-template class="container" #loadinInfo>
+                <div class="row">
+                  <div class="col-md-12 text-warning text-center">
+                    <p>Loading...</p>
+                  </div>
+                </div>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -51,7 +58,7 @@
           </div>
           <div class="card-content">
             <div class="container">
-              <div class="row">
+              <div class="row" *ngIf="!!userInfo?.referalName; else loadingrfl">
                 <div class="col-md-5">
                   <p>User Name :</p>
                 </div>
@@ -59,6 +66,11 @@
                   <p><strong>{{userInfo?.referalName}}</strong></p>
                 </div>
               </div>
+              <ng-template class="row" #loadingrfl>
+                <div class="col-md-12 text-center">
+                  <p class="text-warning">Loading...</p>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>
