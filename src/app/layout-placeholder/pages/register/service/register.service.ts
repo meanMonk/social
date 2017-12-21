@@ -10,6 +10,7 @@ export interface Users {
   email: string;
   uid: string;
   referedBy?: string;
+  referalName?: string;
   createdAt?: Date;
 }
 

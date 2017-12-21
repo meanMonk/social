@@ -27,8 +27,4 @@ export class UserService {
     });
   }
 
-  loadReferalInfo(refId): Observable<Users> {
-    return this.afs.doc<Users>(`registeredUsers/${refId}`).valueChanges();
-  }
-
 }

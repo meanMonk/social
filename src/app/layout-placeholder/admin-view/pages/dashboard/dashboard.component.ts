@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../shared/service/user.service';
 import {Users} from '../../../pages/register/service/register.service';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +11,6 @@ export class DashboardComponent implements OnInit {
 
   public userInfo: Users;
   public location: string;
-  public referal: Observable<Users>;
   constructor(public userService: UserService) {
   }
 
@@ -21,7 +19,6 @@ export class DashboardComponent implements OnInit {
     this.userService.loadUserInfo()
       .subscribe(userInfo => {
           this.userInfo = userInfo;
-          this.referal = this.userService.loadReferalInfo(userInfo.referedBy);
       });
   }
 
