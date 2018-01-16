@@ -1,79 +1,73 @@
-<div class="container-fluid">
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" [routerLink]="['/admin']">Social App</a>
-    <div>
-      <span class="navbar-text">
-        <span class="btn btn-sm btn-outline-success" [routerLink]="['/login']">Log Out</span>
-      </span>
-    </div>
-  </nav>
-  <div class="container pt-3">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-1">
-        <div class="card border-success">
-          <div class="card-header text-center">
-            <h4 class="card-title">User Information</h4>
-          </div>
-          <div class="card-content">
-             <div class="container" *ngIf="userInfo; else loadinInfo">
-               <div class="row">
-                 <div class="col-md-3">
-                   <p>Name : </p>
-                 </div>
-                 <div class="col-md-9">
-                   <p><strong>{{userInfo?.firstName}} {{userInfo?.lastName}}</strong></p>
-                 </div>
-               </div>
-               <div class="row">
-                 <div class="col-md-3">
-                   <p>Email :</p>
-                 </div>
-                 <div class="col-md-9">
-                   <strong>{{userInfo?.email}}</strong>
-                 </div>
-               </div>
-               <div class="row">
-                 <div class="col-md-3">
-                   <p>Referral Link :</p>
-                 </div>
-                 <div class="col-md-9">
-                   <p><code>{{location}}/?rfb={{userInfo?.uid}}</code></p>
-                 </div>
-               </div>
-             </div>
-            <ng-template class="container" #loadinInfo>
-                <div class="row">
-                  <div class="col-md-12 text-warning text-center">
-                    <p>Loading...</p>
-                  </div>
-                </div>
-            </ng-template>
-          </div>
-        </div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+    <div class="card border-success p-3">
+      <div class="card-header text-center">
+        <h4 class="card-title">User Information</h4>
       </div>
-      <div class="col-md-4">
-        <div class="card border-success">
-          <div class="card-header text-center">
-            <p class="card-title">Refer by :</p>
-          </div>
-          <div class="card-content">
-            <div class="container">
-              <div class="row" *ngIf="!!userInfo?.referalName; else loadingrfl">
-                <div class="col-md-5">
-                  <p>User Name :</p>
-                </div>
-                <div class="col-md-6">
-                  <p><strong>{{userInfo?.referalName}}</strong></p>
-                </div>
+      <div class="card-content">
+         <div class="container" *ngIf="userInfo; else loadinInfo">
+           <div class="row">
+             <div class="col-md-3">
+               <p>Name : </p>
+             </div>
+             <div class="col-md-9">
+               <p><strong>{{userInfo?.firstName}} {{userInfo?.lastName}}</strong></p>
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-md-3">
+               <p>Email :</p>
+             </div>
+             <div class="col-md-9">
+               <strong>{{userInfo?.email}}</strong>
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-md-3">
+               <p>Referral Link :</p>
+             </div>
+             <div class="col-md-9">
+               <p><code>{{location}}/?rfb={{userInfo?.uid}}</code></p>
+             </div>
+           </div>
+           <div class="row" *ngIf="!!userInfo?.referalName">
+             <div class="col-md-3">
+               <p>Refer by:</p>
+             </div>
+             <div class="col-md-9">
+               <p><strong>{{userInfo?.referalName}}</strong></p>
+             </div>
+           </div>
+           <div class="row">
+               <div class="m-auto text-center">
+                 <button class="btn btn-sm btn-outline-primary" [routerLink]="['/']">view profile</button>
+                 <button class="btn btn-sm btn-outline-success" [routerLink]="['/']">update profile</button>
+               </div>
+           </div>
+         </div>
+        <ng-template class="container" #loadinInfo>
+            <div class="row">
+              <div class="col-md-12 text-warning text-center">
+                <p>Loading...</p>
               </div>
-              <ng-template class="row" #loadingrfl>
-                <div class="col-md-12 text-center">
-                  <p class="text-warning">Loading...</p>
-                </div>
-              </ng-template>
+            </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-md-offset-1">
+    <div class="card border-success p-3">
+      <div class="card-header text-center">
+        <h4 class="card-title">Referral List</h4>
+      </div>
+      <div class="card-content">
+        <ng-template class="container">
+          <div class="row">
+            <div class="col-md-12 text-warning text-center">
+              <p>Loading...</p>
             </div>
           </div>
-        </div>
+        </ng-template>
       </div>
     </div>
   </div>

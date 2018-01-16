@@ -14,7 +14,7 @@ export const ADMIN_ROUTES: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        loadChildren: './pages/dashboard/dashboard.module#DashboardModule',
       }
     ]
   }

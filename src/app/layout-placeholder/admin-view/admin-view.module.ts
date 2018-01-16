@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AdminViewComponent} from './admin-view.component';
 import {AdminViewRoutingModule} from './admin-view.routes';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import {UserService} from "./shared/service/user.service";
+import {UserService} from './shared/service/user.service';
+import {AppCommonModule} from './common/common.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminViewRoutingModule
+    RouterModule,
+    AdminViewRoutingModule,
+    AppCommonModule
   ],
   declarations: [
-    AdminViewComponent,
-    DashboardComponent
+    AdminViewComponent
   ],
   providers: [
     UserService
