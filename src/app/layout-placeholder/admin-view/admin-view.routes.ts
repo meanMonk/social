@@ -15,6 +15,14 @@ export const ADMIN_ROUTES: Routes = [
       {
         path: 'dashboard',
         loadChildren: './pages/dashboard/dashboard.module#DashboardModule',
+      },
+      {
+        path: 'ads',
+        loadChildren: './pages/ads/ads.module#AdsModule',
+      },
+      {
+        path: 'myads',
+        loadChildren: './pages/myads/myads.module#MyadsModule',
       }
     ]
   }

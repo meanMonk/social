@@ -34,3 +34,12 @@ exports.updateReferalName = functions.firestore
         });
 
   });
+
+
+exports.updateAdsCollection = functions.firestore
+  .document('adsCollection/{adsId}')
+  .onCreate( event => {
+    let adsData = {};
+    adsData.node_id = event.params.adsId;
+    return event.data.ref.set(adsData,{merge : true});
+  });

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HeaderComponent} from './header/header.component';
 import {RouterModule} from "@angular/router";
+import {TruncatePipe} from "../shared/pipe/truncate.pipe";
 
 @NgModule({
   imports: [
@@ -9,10 +10,12 @@ import {RouterModule} from "@angular/router";
     RouterModule
   ],
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    TruncatePipe
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    TruncatePipe
   ]
 })
 export class AppCommonModule { }

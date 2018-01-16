@@ -9,7 +9,7 @@ export class LoginService {
   public user: any;
   constructor( public afAuth: AngularFireAuth,
                public router: Router) {
-    this.user = this.afAuth.authState.subscribe((CurrUser) => {
+    this.afAuth.authState.subscribe((CurrUser) => {
       this.user = CurrUser;
     });
   }

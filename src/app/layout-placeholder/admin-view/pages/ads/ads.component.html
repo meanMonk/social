@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header p-1">
+    <h4 class="text-center text-success">All Ad's</h4>
+    <div class="row text-center">
+      <div class="col-md-8 offset-2">
+        <a class="btn btn-sm btn-outline-success"> Mobile</a>
+        <a class="btn btn-sm btn-outline-success"> Bikes</a>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let ads of adsList">
+          <div class="card mb-3">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-8">
+                  <h5 class="text-capitalize text-success card-title">{{ads?.title | truncate : 12 : '...'}}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="card-subtitle text-center"><span class="text-muted">Category:</span> {{ads?.category}}</h6>
+              <p class="card-text text-justify" title="{{ads?.description}}">
+                {{ads?.description| truncate : 40 : "..." }}
+              </p>
+              <footer class="text-right blockquote-footer">By : <cite title="Source Title">{{ads.created_by || 'NA'}}</cite></footer>
+              <a href="#" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+            <div class="card-footer">
+              <span><span class="text-muted">Posted At:</span> {{(ads?.created_at | date: 'dd/MM/yyyy') || 'Not Available'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-warning" role="alert">
+        {{errorMessage}}
+      </div>
+    </div>
+  </div>
+</div>

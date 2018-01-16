@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute} from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import {LoginService} from '../../pages/login/service/login.service';
 import 'rxjs/add/operator/map';
 import {CookieService} from "ngx-cookie";

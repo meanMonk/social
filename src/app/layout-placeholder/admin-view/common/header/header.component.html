@@ -1,9 +1,18 @@
 <nav class="navbar navbar-dark bg-dark fixed-top">
   <a class="navbar-brand text-secondary" [routerLink]="['']">Social</a>
-  <div>
-      <span class="navbar-text">
-        <a class="btn btn-sm btn-outline-light" [routerLink]="['/login']">Log Out</a>
-      </span>
+  <div class="justify-content-between mr-3">
+    <div class="btn-group dropleft">
+      <a href="javascript:void(0)" class="btn btn-sm text-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Ad's
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a [routerLink]="['/ads']" class="dropdown-item">All Ad's</a>
+        <a [routerLink]="['/myads']" class="dropdown-item">My Ad's</a>
+      </div>
+    </div>
+    <span class="navbar-text">
+      <a class="btn btn-sm btn-outline-light" [routerLink]="['/login']">Log Out</a>
+    </span>
   </div>
 </nav>
 
