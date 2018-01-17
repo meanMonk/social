@@ -5,6 +5,7 @@ import {AdminViewRoutingModule} from './admin-view.routes';
 import {UserService} from './shared/service/user.service';
 import {AppCommonModule} from './common/common.module';
 import {RouterModule} from '@angular/router';
+import {StorageService} from "./shared/service/storage.service";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {RouterModule} from '@angular/router';
     AdminViewComponent
   ],
   providers: [
-    UserService
+    UserService,
+    StorageService
   ]
 })
 export class AdminViewModule { }

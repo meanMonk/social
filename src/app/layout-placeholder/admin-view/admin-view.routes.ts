@@ -17,6 +17,10 @@ export const ADMIN_ROUTES: Routes = [
         loadChildren: './pages/dashboard/dashboard.module#DashboardModule',
       },
       {
+        path: 'profile',
+        loadChildren: './pages/profile/profile.module#ProfileModule',
+      },
+      {
         path: 'ads',
         loadChildren: './pages/ads/ads.module#AdsModule',
       },

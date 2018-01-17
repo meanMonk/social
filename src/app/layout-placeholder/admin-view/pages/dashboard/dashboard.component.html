@@ -5,7 +5,7 @@
         <h4 class="card-title">User Information</h4>
       </div>
       <div class="card-body">
-         <div class="container" *ngIf="userInfo; else loadinInfo">
+        <div class="container" *ngIf="userInfo; else loadinInfo">
            <div class="row">
              <div class="col-md-3">
                <p>Name : </p>
@@ -40,8 +40,8 @@
            </div>
            <div class="row">
                <div class="m-auto text-center">
-                 <button class="btn btn-sm btn-outline-primary" [routerLink]="['/']">view profile</button>
-                 <button class="btn btn-sm btn-outline-success" [routerLink]="['/']">update profile</button>
+                 <button class="btn btn-sm btn-outline-primary" (click)="memberDetail(userInfo)" >view profile</button>
+                 <button class="btn btn-sm btn-outline-success" (click)="updateInfo(userInfo)">update profile</button>
                </div>
            </div>
          </div>
@@ -60,7 +60,27 @@
       <div class="card-header text-center">
         <h4 class="card-title">Referral List</h4>
       </div>
-      <div class="card-content">
+      <div class="card-body pt-0">
+        <div class="table-responsive-sm" *ngIf="referList?.length > 0; else loadinInfo">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rMem of referList; let i = index">
+                  <th>{{i+1}}</th>
+                  <td>{{rMem?.firstName}} {{rMem?.lastName}}</td>
+                  <td>{{rMem?.email}}</td>
+                  <td><a href="javascript:void(0)" (click)="memberDetail(rMem)">view details</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
         <ng-template class="container">
           <div class="row">
             <div class="col-md-12 text-warning text-center">

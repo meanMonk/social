@@ -27,7 +27,7 @@ export class AdsService {
 
   updateAds(adsModel) {
     const adRef: AngularFirestoreDocument<AdsModel> = this.afs.doc(`adsCollection/${adsModel.node_id}`);
-    return Observable.fromPromise(adRef.set(adsModel));
+    return Observable.fromPromise(adRef.set(adsModel, { merge: true }));
   }
 
   private postAds(adsData) {
