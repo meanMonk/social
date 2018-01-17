@@ -30,7 +30,6 @@ export class MyadsComponent implements OnInit {
     if (window.confirm('You will not be able to revert this operation!')) {
       this._adService.removeAds(adsValue)
         .subscribe(res => {
-            console.log('item remove successfully!');
             this.loadAds();
           },
           (error) => {
@@ -51,7 +50,10 @@ export class MyadsComponent implements OnInit {
                   this.errorMessage = 'No ads found Please create new one';
               }
            });
-      });
+      },
+        (error) => {
+            console.log('User is not authenticated!');
+        });
   }
 
 }

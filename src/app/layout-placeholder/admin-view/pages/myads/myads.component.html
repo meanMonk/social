@@ -30,7 +30,7 @@
               <p class="card-text" title="{{ads?.description}}">
                 {{ads?.description| truncate : 40 : "..." }}
               </p>
-              <a href="#" class="btn btn-primary btn-sm">View Details</a>
+              <a href="javascript:void(0)" class="btn btn-primary btn-sm">View Details</a>
             </div>
             <div class="card-footer">
               <span><span class="text-muted">Posted At:</span> {{(ads?.created_at | date: 'dd/MM/yyyy') || 'Not Available'}}</span>

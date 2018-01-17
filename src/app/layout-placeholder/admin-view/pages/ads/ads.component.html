@@ -3,15 +3,17 @@
     <h4 class="text-center text-success">All Ad's</h4>
     <div class="row text-center">
       <div class="col-md-8 offset-2">
-        <a class="btn btn-sm btn-outline-success"> Mobile</a>
-        <a class="btn btn-sm btn-outline-success"> Bikes</a>
+        <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'all' ? 'active' : ''" (click)="byCategory = 'all'" > All</a>
+        <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'mobile' ? 'active' : ''" (click)="byCategory = 'mobile'"> Mobile's</a>
+        <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'bike' ? 'active' : ''" (click)="byCategory = 'bike'"> Bike's</a>
+        <a class="btn btn-sm btn-outline-success" [ngClass]="byCategory === 'laptop' ? 'active' : ''" (click)="byCategory = 'laptop'"> Laptop's</a>
       </div>
     </div>
   </div>
   <div class="card-body">
     <div class="container">
       <div class="row">
-        <div class="col-md-3" *ngFor="let ads of adsList">
+        <div class="col-md-3" *ngFor="let ads of (adsList | cfilter: byCategory)">
           <div class="card mb-3">
             <div class="card-header">
               <div class="row">

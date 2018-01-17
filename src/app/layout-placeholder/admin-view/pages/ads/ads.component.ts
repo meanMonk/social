@@ -10,7 +10,8 @@ import {AdsService} from '../../shared/service/ads.service';
 export class AdsComponent implements OnInit {
 
   public adsList: any[];
-  public errorMessage: string;
+  public errorMessage: String;
+  public byCategory: String = 'all';
 
   constructor(public router: Router,
               public _adService: AdsService) { }
@@ -22,12 +23,12 @@ export class AdsComponent implements OnInit {
   loadAds() {
     this._adService.loadAllAds()
       .subscribe(res => {
-        if (res.length > 0){
+        if (res.length > 0) {
           this.adsList = res;
         } else {
           this.errorMessage = 'Opsss.. No Ad`s found!';
         }
-      })
+      });
   }
 
 }

@@ -54,7 +54,6 @@ export class NewadsComponent implements OnInit {
         this._adService.createNewAds(adsModel)
           .subscribe((res) => {
             console.log('New ads created successfully');
-            console.log(res);
             this.router.navigate(['/myads']);
           },(error) => {
             console.log('error occurred');
@@ -63,12 +62,11 @@ export class NewadsComponent implements OnInit {
       } else {
         this.adsValue.title = adsModel.title;
         this.adsValue.description = adsModel.description;
-        this.adsValue.title = adsModel.category;
+        this.adsValue.category = adsModel.category;
         this.adsValue.pudated_at = new Date();
         this._adService.updateAds(this.adsValue)
           .subscribe((res) => {
             console.log('data updated successfully');
-            console.log(res);
             this.router.navigate(['/myads']);
           }, (error) => {
             console.log('error occurred');
