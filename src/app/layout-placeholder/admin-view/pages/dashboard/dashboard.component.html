@@ -60,8 +60,8 @@
       <div class="card-header text-center">
         <h4 class="card-title">Referral List</h4>
       </div>
-      <div class="card-body pt-0">
-        <div class="table-responsive-sm" *ngIf="referList?.length > 0; else loadinInfo">
+      <div class="card-body pt-0 ">
+        <div class="table-responsive-sm" *ngIf="rMemList?.length > 0; else loadinInfo">
             <table class="table">
               <thead class="thead-dark">
                 <tr>
@@ -72,7 +72,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let rMem of referList; let i = index">
+                <tr *ngFor="let rMem of pagedMemList; let i = index">
                   <th>{{i+1}}</th>
                   <td>{{rMem?.firstName}} {{rMem?.lastName}}</td>
                   <td>{{rMem?.email}}</td>
@@ -80,7 +80,28 @@
                 </tr>
               </tbody>
             </table>
+          <!-- pager -->
+            <nav aria-label="Page navigation">
+            <ul class="pagination d-flex justify-content-center ">
+              <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(pager.currentPage - 1)" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item" *ngFor="let page of pager.pages">
+                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+              </li>
+              <li>
+                <a class="page-link" (click)="setPage(pager.currentPage + 1)" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
+
         <ng-template class="container">
           <div class="row">
             <div class="col-md-12 text-warning text-center">

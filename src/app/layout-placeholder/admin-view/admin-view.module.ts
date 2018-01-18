@@ -6,6 +6,7 @@ import {UserService} from './shared/service/user.service';
 import {AppCommonModule} from './common/common.module';
 import {RouterModule} from '@angular/router';
 import {StorageService} from "./shared/service/storage.service";
+import {PagerService} from "./shared/service/pager.service";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {StorageService} from "./shared/service/storage.service";
   ],
   providers: [
     UserService,
-    StorageService
+    StorageService,
+    PagerService
   ]
 })
 export class AdminViewModule { }
