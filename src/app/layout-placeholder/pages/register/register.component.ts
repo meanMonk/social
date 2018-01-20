@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   public errorMessage: string;
   public error: Boolean;
   public signUpForm: FormGroup;
-  public returnUrl: string;
+
 
   constructor(public _fb: FormBuilder,
               public _cookieService: CookieService,

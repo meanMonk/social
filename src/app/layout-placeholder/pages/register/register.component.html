@@ -1,79 +1,71 @@
-<div class="container-fluid p-0">
-  <nav class="navbar navbar-light bg-dark">
-    <a class="navbar-brand text-muted" href="#">Social App</a>
-    <div>
-      <span class="navbar-text">
-        <span class="btn btn-sm btn-outline-light text-light" [routerLink]="['/login']">Login</span>
-      </span>
-    </div>
-  </nav>
-  <div class="container-fluid pt-5">
+<div class="container-fluid pt-5">
     <div class="row">
-      <div class="col-md-8">
-        <div class="jumbotron">
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet iste labore similique sit temporibus veniam? Adipisci alias aliquam commodi ea est illum, molestiae molestias nihil officiis placeat, quae reiciendis.</p>
-          <hr class="my-4">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque deserunt nisi odio, quis reprehenderit sed. </p>
-          <p class="lead text-center">
-            <a class="btn btn-outline-primary btn-sm" href="#" role="button">Learn more</a>
-          </p>
-        </div>
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-6 offset-md-6">
         <div class="container">
-          <div class="card border-dark mb-3" style="max-width: 20rem;">
-            <div class="card-header">
-              <div class="card-title text-center">
-                <h3><i class="fa fa-user-plus" aria-hidden="true"></i>  Register</h3>
-              </div>
-              <div class="card-header-tabs text-center bg-dark" *ngIf="error">
-                <small class="card-title text-danger ">
-                  Error - {{errorMessage}}
-                </small>
-              </div>
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
             </div>
-            <div class="card-body text-dark">
-              <form [formGroup]="signUpForm" novalidate (ngSubmit)="register(signUpForm.value, signUpForm.valid)">
-                <fieldset>
-                  <div class="form-group">
-                    <label for="userName"> First Name</label>
-                    <input type="text" class="form-control-sm form-control" id="firstName" aria-describedby="firstName" placeholder="Enter First Name" formControlName="firstName">
-                    <small class="text-danger" [hidden]="signUpForm.controls.firstName.valid || (signUpForm.controls.firstName.pristine)">
-                      Fist name is required
-                    </small>
-                    <label for="lastName"> Last Name</label>
-                    <input type="text" class="form-control-sm form-control" id="lastName" aria-describedby="lastName" placeholder="Enter Last Name" formControlName="lastName">
-                    <small class="text-danger" [hidden]="signUpForm.controls.lastName.valid || (signUpForm.controls.lastName.pristine)">
-                      Last name is required
-                    </small>
-                    <label for="userName"> Email address</label>
-                    <input type="email" class="form-control-sm form-control" id="userName" aria-describedby="userName" placeholder="Enter email" formControlName="email">
-                    <small class="text-danger" [hidden]="signUpForm.controls.email.valid || (signUpForm.controls.email.pristine)">
-                      Email is not valid and ex. <i>john@doe.com</i>.
-                    </small>
-                    <label for="pwd">Password</label>
-                    <input type="password" class="form-control-sm form-control" placeholder="Password" formControlName="password"
-                           required validateEqual="confirmPassword" reverse="true" minlength="6" maxlength="10" #password>
-                    <small class="text-danger" [hidden]="signUpForm.controls.password.valid || (signUpForm.controls.password.pristine)">
-                      Password is not match
-                    </small>
-                    <label for="pwd">Confirm Password</label>
-                    <input type="password" class="form-control-sm form-control" placeholder="Confirm Password" formControlName="confirmPassword"
-                           required validateEqual="password" reverse="false" #confirmPassword>
-                    <small class="text-danger" [hidden]="signUpForm.controls.confirmPassword.valid || (signUpForm.controls.password.pristine)">
-                      Password is not match
-                    </small>
-                  </div>
-                  <div class="pl-2 text-center">
-                    <button type="submit" class="btn btn-md btn-outline-success" [disabled]="!signUpForm.valid">Create User</button>
-                    <button class="btn btn-md btn-outline-primary" [routerLink]="['/login']">Log In</button>
-                  </div>
-                </fieldset>
-              </form>
+            <div class="service-content">
+              <h1 class="s-title">Register</h1>
+              <small class="text-danger" [hidden]="!errorMessage">
+                Error - {{errorMessage}}
+              </small>
+              <div class="s-description text-center">
+                <form [formGroup]="signUpForm" novalidate (ngSubmit)="register(signUpForm.value, signUpForm.valid)" class="form-mf">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter your first name..." formControlName="firstName">
+                          <small class="text-danger" [hidden]="signUpForm.controls.firstName.valid || (signUpForm.controls.firstName.pristine)">
+                            Fist name is required
+                          </small>
+                        </div>
+                        <div class="col-md-6">
+                          <input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter your last name..." formControlName="lastName">
+                          <small class="text-danger" [hidden]="signUpForm.controls.lastName.valid || (signUpForm.controls.lastName.pristine)">
+                            Last name is required
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col">
+                          <input type="email" class="form-control" id="userName" aria-describedby="userName" placeholder="Enter email address.." formControlName="email">
+                          <small class="text-danger" [hidden]="signUpForm.controls.email.valid || (signUpForm.controls.email.pristine)">
+                            Email is not valid and ex. <i>john@doe.com</i>.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="password" class="form-control" placeholder="Enter Password..." formControlName="password"
+                                 required validateEqual="confirmPassword" reverse="true" minlength="6" maxlength="10" #password>
+                          <small class="text-danger" [hidden]="signUpForm.controls.password.valid || (signUpForm.controls.password.pristine)">
+                            Password is not match
+                          </small>
+                        </div>
+                        <div class="col-md-6">
+                          <input type="password" class="form-control" placeholder="Enter Password again..." formControlName="confirmPassword"
+                                 required validateEqual="password" reverse="false" #confirmPassword>
+                          <small class="text-danger" [hidden]="signUpForm.controls.confirmPassword.valid || (signUpForm.controls.password.pristine)">
+                            Password is not match
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pl-2 text-center">
+                      <button type="submit" class="btn btn-md btn-outline-success" [disabled]="!signUpForm.valid">Create User</button>
+                      <button class="btn btn-md btn-outline-primary" [routerLink]="['/login']">Log In</button>
+                    </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

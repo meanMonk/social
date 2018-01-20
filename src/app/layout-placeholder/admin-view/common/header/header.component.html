@@ -1,18 +1,30 @@
-<nav class="navbar navbar-light bg-dark fixed-top">
-  <a class="navbar-brand text-secondary" [routerLink]="['']">Social</a>
-  <div class="justify-content-between mr-3">
-    <div class="btn-group dropleft">
-      <a href="javascript:void(0)" class="btn btn-sm text-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Ad's
-      </a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <a [routerLink]="['/ads']" class="dropdown-item">All Ad's</a>
-        <a [routerLink]="['/myads']" class="dropdown-item">My Ad's</a>
-      </div>
+<nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top navbar-reduce" style="background-color:#fff">
+  <div class="container">
+    <a class="navbar-brand js-scroll" href="#page-top" style="color: #42AB8E">Social</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll" style="color: #42AB8E" [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll" style="color: #42AB8E" [routerLink]="['/ads']" routerLinkActive="active">All Ad's</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll" style="color: #42AB8E" [routerLink]="['/myads']" routerLinkActive="active">My Ad's</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-sm btn-outline-dark" [routerLink]="['/myads/create']">Create Ad's</a>
+        </li>
+        <li>
+          <a class="btn btn-sm btn-outline-success" [routerLink]="['/login']">Log Out</a>
+        </li>
+      </ul>
     </div>
-    <span class="navbar-text">
-      <a class="btn btn-sm btn-outline-light text-light" [routerLink]="['/login']">Log Out</a>
-    </span>
   </div>
 </nav>
-

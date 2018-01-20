@@ -11,10 +11,11 @@ import {LoginService} from "./service/login.service";
 })
 export class LoginComponent implements OnInit {
 
-  public errorMessage: string = "User is not exists !";
+  public errorMessage: string;
   public error: Boolean = false;
   public loginForm: FormGroup;
   public returnUrl: string;
+  public path: string;
 
   constructor(public _fb: FormBuilder,
               public route: ActivatedRoute,
