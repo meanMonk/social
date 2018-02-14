@@ -11,6 +11,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {CookieModule} from "ngx-cookie";
+import {NgxCookieService} from "./layout-placeholder/shared/service/cookie.service";
 
 const FIREBASE_MODULES = [
   AngularFireModule.initializeApp(environment.config.firebase),
@@ -32,7 +33,8 @@ const FIREBASE_MODULES = [
   ],
   providers: [
     AuthGuard,
-    LoginService
+    LoginService,
+    NgxCookieService
   ],
   bootstrap: [AppComponent]
 })

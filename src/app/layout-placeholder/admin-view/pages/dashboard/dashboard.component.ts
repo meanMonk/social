@@ -66,7 +66,6 @@ export class DashboardComponent implements OnInit {
     // get pager object from service
     this.pager = this._pagerService.getPager(this.rMemList.length, page);
 
-    console.log(this.pager);
     // get current page of items
     this.pagedMemList = this.rMemList.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }

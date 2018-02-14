@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../pages/login/service/login.service';
 import 'rxjs/add/operator/map';
-import {CookieService} from "ngx-cookie";
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor( public loginService: LoginService,
                public router: Router,
-               public route: ActivatedRoute,
-               private _cookieService: CookieService) {
+               public route: ActivatedRoute) {
 
   }
 
@@ -19,9 +17,6 @@ export class AuthGuard implements CanActivate {
       if (user) {
         return true;
       } else {
-        this.route.queryParams.forEach((param) => {
-          this.setCookie(param);
-        });
         this.router.navigate(['/login'], {
           queryParams: {
             returnTo: state.url
@@ -30,9 +25,6 @@ export class AuthGuard implements CanActivate {
         return false;
       }
     }, (err) => {
-      this.route.queryParams.forEach((param) => {
-        this.setCookie(param);
-      });
       this.router.navigate(['/login'], {
         queryParams: {
           returnTo: state.url
@@ -40,14 +32,6 @@ export class AuthGuard implements CanActivate {
       });
       return false;
     });
-  }
-
-  setCookie(queryParams) {
-    const returnNode = queryParams['returnTo'];
-    const referalId = (returnNode && returnNode.indexOf('rfb') > -1) ? (returnNode && returnNode.split('?')[1].split('=')[1]) : '';
-    if (!!referalId) {
-      this._cookieService.put('rfb', referalId);
-    }
   }
 
 }

@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     const details = this._storageService.getUserDetail();
-    console.log('from profile component', details);
     if (details) {
       this.userProfileDetails = details;
       this.userProfileKeys = Object.keys(this.userProfileDetails);

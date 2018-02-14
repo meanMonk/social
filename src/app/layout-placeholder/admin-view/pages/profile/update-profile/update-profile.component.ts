@@ -19,7 +19,7 @@ export class UpdateProfileComponent implements OnInit {
                public _storageService: StorageService) { }
 
   ngOnInit() {
-    const details = this._storageService.getUserDetail()
+    const details = this._storageService.getUserDetail();
     if (details) {
       this.userDetailsInfo = details;
       this.refreshForm(details);
@@ -42,7 +42,6 @@ export class UpdateProfileComponent implements OnInit {
       console.log(formModel);
       this._userService.updateUserProfile(formModel)
         .subscribe(res => {
-            console.log('user profile update successfully', res);
             this.router.navigate(['/dashboard']);
           },
           (error) => {

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {EmailValidator} from '../../shared/service/validators';
 import {RegisterService, Users} from './service/register.service';
 import {CookieService} from "ngx-cookie";
+import {NgxCookieService} from "../../shared/service/cookie.service";
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   constructor(public _fb: FormBuilder,
               public _cookieService: CookieService,
               public registerService: RegisterService,
-              public router: Router) { }
+              public router: Router,
+              private cookieService: NgxCookieService) { }
 
   ngOnInit() {
     this.refreshForm();
@@ -38,7 +40,8 @@ export class RegisterComponent implements OnInit {
 
   register(userModel: any, isValid: boolean) {
     if (isValid) {
-      userModel['referedBy'] = this._cookieService.get('rfb') || '';
+      userModel['referedBy'] = this.cookieService.getCookie('rfb') || '';
+      console.log('referrer Id', userModel['referedBy']);
       this.registerService.createUser(userModel)
         .subscribe((res) => {
             this.error = false;
